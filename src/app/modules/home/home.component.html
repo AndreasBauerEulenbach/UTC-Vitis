@@ -1,0 +1,14 @@
+<div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
+  <div class="container" *ngIf="account != null">
+    <h1>Hallo <b>{{account.firstName}}</b>!</h1>
+    <p>Deine Email-Adresse lautet <b>{{account.email}}</b></p>
+  </div>
+  <div class="container" *ngIf="account == null">
+    <h1>Liebe Spielerin, lieber Spieler!</h1><br>
+    <p class="blocked">Du befindest dich beim Forderungssystem des <b>UTC Vitis</b>. Dabei handelt es sich um ein vereins-internes Turnier, dass sich über ein ganzes Jahr erstreckt.
+    Jedes registrierte Vereinsmitglied (Voraussetzung hierfür ist ein für dieses Jahr eingezahlter Mitgliedsbeitrag) kann an diesem Turnier teilnehmen. Dazu muss man
+    sich ganz einfach <a href="/account/login"><b>HIER</b></a> registrieren und anschließend im Profil die Teilnahme für das aktuelle Jahr bekannt geben.
+    Danach kannst du Forderungen an bestimmte Spieler-/innen stellen, ganz nach dem Regelwerk, dieses kannst du <a href="/rules"><b>HIER</b></a> nachlesen.
+    <br><br>Wir wünschen dir viel Spaß mit unserer neuen Plattform und natürlich spannende und verletzungsfreie Spiele!</p>
+  </div>
+</div>

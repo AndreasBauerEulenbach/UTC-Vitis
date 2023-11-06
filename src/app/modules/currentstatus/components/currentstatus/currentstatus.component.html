@@ -1,0 +1,114 @@
+<div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
+  <div id="status-tournamen-currentyear">
+    <h3 class="block mb-6 text-xl font-medium text-gray-900 dark:text-white">Aktueller Status zum Turnier</h3>
+    <table bgcolor="#d3d3d3">
+      <thead align="left">
+      <tr>
+        <th>Id</th>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Rolle</th>
+        <th></th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let account of accounts" style="height: 40px">
+        <td>{{account.id}}</td>
+        <td>{{account.firstName}} {{account.lastName}}</td>
+        <td>{{account.email}}</td>
+        <td>{{account.role}}</td>
+        <td>
+          <a (click)="gameService.createGameForCurrentAccount(account.id)" href="/currentstatus" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm sm:w-auto px-1 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Fordern</a>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+  <div id="status-tournament-my-open-games-this-year">
+    <h3 class="block mb-6 text-xl font-medium text-gray-900 dark:text-white">Meine offene Forderung ( {{allGames.length}} Einträge):</h3>
+    <table bgcolor="#d3d3d3">
+      <thead align="left">
+      <tr>
+        <th>Spieler 1</th>
+        <th></th>
+        <th>Spieler 2</th>
+        <th>Datum, Uhrzeit</th>
+        <th>Ort</th>
+        <th></th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let game of allGames" style="height: 40px">
+        <td>{{game.player1.firstName}} {{game.player1.lastName}}</td>
+        <td>VS</td>
+        <td>{{game.player2.firstName}} {{game.player2.lastName}}</td>
+        <td>{{game.date}}, {{game.time}}</td>
+        <td>{{game.location}}</td>
+        <td></td>
+        <td>{{gameService.isGameCreatedByCurrentAccount(game.gameId)}}
+          <a class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm sm:w-auto px-1 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Zurückziehen</a>
+        </td>
+        <td>
+          <a class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm sm:w-auto px-1 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Ablehnen</a>
+        </td>
+        <td>
+          <a class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm sm:w-auto px-1 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Ergebnis eintragen</a>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+  <!--
+  <div id="status-tournament-my-closed-games-this-year">
+    <h3 class="block mb-6 text-xl font-medium text-gray-900 dark:text-white">Meine offenen Forderungen:</h3>
+    <table bgcolor="#d3d3d3">
+      <thead align="left">
+      <tr>
+        <th>Spieler 1</th>
+        <th></th>
+        <th>Spieler 2</th>
+        <th>Datum, Uhrzeit</th>
+        <th>Ort</th>
+        <th>Ergebnis</th>
+        <th></th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let game of allGames" style="height: 40px">
+        <td>{{game.player1.firstName}} {{game.player1.lastName}}</td>
+        <td>VS</td>
+        <td>{{game.player2.firstName}} {{game.player2.lastName}}</td>
+        <td>{{game.date}}, {{game.time}}</td>
+        <td>{{game.location}}</td>
+        <td>{{game.result_set1_Player1}}:{{game.result_set1_Player2}} / {{game.result_set2_Player1}}:{{game.result_set2_Player2}} / {{game.result_set3_Player1}}:{{game.result_set3_Player2}}</td>
+        <td>
+          <a class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm sm:w-auto px-1 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Fordern</a>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
+  <div class="pyramidRow">
+    <div class="pyramidElement">Bauer Erich</div>
+  </div>
+  <div class="pyramidRow">
+    <div class="pyramidElement">Gart Elmar</div>
+    <div class="pyramidElement">Gart Elmar</div>
+  </div>
+  <div>
+    <div class="pyramidRow">
+      <div class="pyramidElement">Veith Kevin</div>
+      <div class="pyramidElement">Veith Kevin</div>
+      <div class="pyramidElement">Veith Kevin</div>
+      <div class="pyramidElement">Veith Kevin</div>
+      <div class="pyramidElement">Veith Kevin</div>
+      <div class="pyramidElement">Veith Kevin</div>
+      <div class="pyramidElement">Veith Kevin</div>
+      <div class="pyramidElement">Veith Kevin</div>
+      <div class="pyramidElement">Veith Kevin</div>
+    </div>
+  </div>
+</div>-->

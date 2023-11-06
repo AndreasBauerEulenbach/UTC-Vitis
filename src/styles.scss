@@ -1,1 +1,15 @@
 /* You can add global styles to this file, and also import other style files */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+[type='text'], [type='email'], [type='url'], [type='password'], [type='number'], [type='date'], [type='datetime-local'], [type='month'], [type='search'], [type='tel'], [type='time'], [type='week'], [multiple], textarea, select {
+  background-color: rgb(249,250,251);
+  border-color: rgb(209, 213, 219);
+  border-radius: 10px;
+}
+
+.blocked {
+  text-align: justify;
+  text-align-last: left;
+}

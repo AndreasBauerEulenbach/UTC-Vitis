@@ -1,0 +1,9 @@
+<h3 class="block mb-6 text-xl font-medium text-gray-900 dark:text-white">Email verifizieren</h3>
+<div class="card-body">
+    <div *ngIf="emailStatus == EmailStatus.Verifying">
+        Verifizierung...
+    </div>
+    <div *ngIf="emailStatus == EmailStatus.Failed">
+        Verifizierung fehlgeschlagen, verifzieren deines Accounts über folgenden Link <a routerLink="forgot-password">Passwort vergessen</a>.
+    </div>
+</div>
