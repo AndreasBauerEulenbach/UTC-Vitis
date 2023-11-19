@@ -4,8 +4,13 @@ import {Subscription} from 'rxjs';
 
 import {Alert, AlertType} from '@app/_models/alert';
 import {AlertService} from '@app/_services/alert.service';
+import { NgIf, NgFor } from '@angular/common';
 
-@Component({ selector: 'alert', templateUrl: 'alert.component.html' })
+@Component({
+    selector: 'alert', templateUrl: 'alert.component.html',
+    standalone: true,
+    imports: [NgIf, NgFor]
+})
 export class AlertComponent implements OnInit, OnDestroy {
     @Input() id = 'default-alert';
     @Input() fade = true;

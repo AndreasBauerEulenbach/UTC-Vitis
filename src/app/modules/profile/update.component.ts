@@ -1,13 +1,18 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router, ActivatedRoute, RouterLink } from '@angular/router';
+import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { first } from 'rxjs/operators';
 import {AccountService} from "@app/_services/account.service";
 import {AlertService} from "@app/_services/alert.service";
 import {MustMatch} from "@app/_helpers/must-match.validator";
+import { NgClass, NgIf } from '@angular/common';
 
 
-@Component({ templateUrl: 'update.component.html' })
+@Component({
+    templateUrl: 'update.component.html',
+    standalone: true,
+    imports: [ReactiveFormsModule, NgClass, NgIf, RouterLink]
+})
 export class UpdateComponent implements OnInit {
   account = this.accountService.accountValue;
   form: FormGroup;
