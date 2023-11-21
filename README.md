@@ -2,9 +2,13 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.0.1.
 
-## Commit & Push changes in Allianz to GitHub repository
+## Important hints for development
 
+Commit & Push changes in Allianz to GitHub repository
 git config --global http.sslVerify false | true
+
+If NPM-cache is invalid, e.g. @angular/core could not be found any more
+npm cache clean --force
 
 ## Development server
 
