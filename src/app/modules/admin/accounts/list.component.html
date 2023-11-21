@@ -2,10 +2,10 @@
 <table>
   <thead align="left">
   <tr>
-    <th>Name</th>
-    <th>Email</th>
-    <th>Rolle</th>
-    <th></th>
+    <th width="25%">Name</th>
+    <th width="55%">Email</th>
+    <th width="10%">Rolle</th>
+    <th width="15%"></th>
   </tr>
   </thead>
   <tbody>
@@ -14,8 +14,8 @@
     <td>{{account.email}}</td>
     <td>{{account.role}}</td>
     <td>
-      <a routerLink="edit/{{account.id}}" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm sm:w-auto px-1 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Edit</a>
-      <button (click)="deleteAccount(account.id)" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm sm:w-auto px-1 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+      <a routerLink="edit/{{account.id}}" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm sm:w-auto px-1 py-1.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Edit</a>
+      <button (click)="deleteAccount(account.id)" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm sm:w-auto px-1 py-1.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
               [disabled]="account.isDeleting">
         <span *ngIf="account.isDeleting" class="spinner-border spinner-border-sm"></span>
         <span *ngIf="!account.isDeleting">Delete</span>
@@ -31,5 +31,5 @@
 </table>
 <div>
   <br>
-  <a routerLink="add" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Create Account</a>
+  <a routerLink="add" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm sm:w-auto px-5 py-1.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Create Account</a>
 </div>

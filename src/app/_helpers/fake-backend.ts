@@ -69,6 +69,9 @@ export class FakeBackendInterceptor implements HttpInterceptor {
       const { email, password } = body;
       const account = accounts.find(x => x.email === email && x.password === password && x.isVerified);
 
+      //console.log("Account: ", account);
+      //console.log("Accounts: ", accounts);
+
       if (!account) return error('Email oder Passwort sind falsch!');
 
       // add refresh token to account

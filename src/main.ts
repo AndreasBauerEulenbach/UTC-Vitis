@@ -9,7 +9,7 @@ import { HTTP_INTERCEPTORS, withInterceptorsFromDi, provideHttpClient } from '@a
 import { AccountService } from '@app/_services/account.service';
 import { appInitializer } from '@app/_helpers/app.initializer';
 import { provideRouter } from '@angular/router';
-import { APP_ROUTES } from './app/routes';
+import { APP_ROUTES } from '@app/app.routes';
 
 if (environment.production) {
   enableProdMode();

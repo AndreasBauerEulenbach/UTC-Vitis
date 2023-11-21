@@ -3,6 +3,7 @@ import {Account} from "@app/_models/account";
 import {AccountService} from "@app/_services/account.service";
 import { RouterLink } from '@angular/router';
 import { NgIf } from '@angular/common';
+import {Role} from "@app/_models/role";
 
 @Component({
     selector: 'app-menu',
@@ -22,4 +23,6 @@ export class MenuComponent {
   logout() {
     this.accountService.logout();
   }
+
+  protected readonly Role = Role;
 }

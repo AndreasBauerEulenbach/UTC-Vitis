@@ -65,10 +65,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "UTC-Vitis-GJM:build:production"
+              "buildTarget": "UTC-Vitis-GJM:build:production"
             },
             "development": {
-              "browserTarget": "UTC-Vitis-GJM:build:development"
+              "buildTarget": "UTC-Vitis-GJM:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -76,7 +76,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "UTC-Vitis-GJM:build"
+            "buildTarget": "UTC-Vitis-GJM:build"
           }
         },
         "test": {
