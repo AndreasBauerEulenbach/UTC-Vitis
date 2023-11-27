@@ -37,17 +37,6 @@
                 <div *ngIf="f.email.errors.email">Email must be a valid email address</div>
             </div>
         </div>
-        <div class="mb-4">
-            <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Rolle</label>
-            <select formControlName="role" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" [ngClass]="{ 'is-invalid': submitted && f.role.errors }">
-                <option value=""></option>
-                <option value="User">User</option>
-                <option value="Admin">Admin</option>
-            </select>
-            <div *ngIf="submitted && f.role.errors" class="invalid-feedback">
-                <div *ngIf="f.role.errors.required">Role is required</div>
-            </div>
-        </div>
     </div>
     <div *ngIf="!isAddMode">
       <h3 class="block mb-2 text-xl font-medium text-gray-900 dark:text-white">Passwort ändern</h3>

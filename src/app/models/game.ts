@@ -1,5 +1,5 @@
 import {Time} from "@angular/common";
-import {Account} from "@app/_models/account";
+import {Account} from "@app/models/account";
 
 export class Game {
     gameId: number;

@@ -4,7 +4,7 @@ import {HttpClient, HttpParams} from '@angular/common/http';
 import {BehaviorSubject, Observable} from 'rxjs';
 
 import {environment} from '@environments/environment';
-import {Game} from "@app/_models/game";
+import {Game} from "@app/models/game";
 import {AccountService} from "@app/_services/account.service";
 
 const baseUrl = `${environment.apiUrl}/games`;

@@ -4,9 +4,7 @@ import { Observable, of, throwError } from 'rxjs';
 import { delay, materialize, dematerialize } from 'rxjs/operators';
 
 import { AlertService } from '@app/_services/alert.service';
-import { Role } from '@app/_models/role';
-import {Account} from "@app/_models/account";
-import {Game} from "@app/_models/game";
+import {Game} from "@app/models/game";
 
 // array in local storage for accounts
 const accountsKey = 'angular-10-signup-verification-boilerplate-accounts';
@@ -138,11 +136,11 @@ export class FakeBackendInterceptor implements HttpInterceptor {
 
       // assign account id and a few other properties then save
       account.id = newAccountId();
-      if (account.id === 1) {
+      if (account.email === 'test@test.at' || account.email === 'test@test.com') {
         // first registered account is an admin
-        account.role = Role.Admin;
+        account.isAdmin = true;
       } else {
-        account.role = Role.User;
+        account.isAdmin = false;
       }
       account.dateCreated = new Date().toISOString();
       account.verificationToken = new Date().getTime().toString();
@@ -248,7 +246,7 @@ export class FakeBackendInterceptor implements HttpInterceptor {
       let account = accounts.find(x => x.id === idFromUrl());
 
       // user accounts can get own profile and admin accounts can get all profiles
-      if (account.id !== currentAccount().id && !isAuthorized(Role.Admin)) {
+      if (account.id !== currentAccount().id && !isAuthorizedAsAdmin()) {
         return unauthorized();
       }
 
@@ -256,7 +254,7 @@ export class FakeBackendInterceptor implements HttpInterceptor {
     }
 
     function createAccount() {
-      if (!isAuthorized(Role.Admin)) return unauthorized();
+      if (!isAuthorizedAsAdmin()) return unauthorized();
 
       const account = body;
       if (accounts.find(x => x.email === account.email)) {
@@ -282,7 +280,7 @@ export class FakeBackendInterceptor implements HttpInterceptor {
       let account = accounts.find(x => x.id === idFromUrl());
 
       // user accounts can update own profile and admin accounts can update all profiles
-      if (account.id !== currentAccount().id && !isAuthorized(Role.Admin)) {
+      if (account.id !== currentAccount().id && !isAuthorizedAsAdmin()) {
         return unauthorized();
       }
 
@@ -306,7 +304,7 @@ export class FakeBackendInterceptor implements HttpInterceptor {
       let account = accounts.find(x => x.id === idFromUrl());
 
       // user accounts can delete own account and admin accounts can delete any account
-      if (account.id !== currentAccount().id && !isAuthorized(Role.Admin)) {
+      if (account.id !== currentAccount().id && !isAuthorizedAsAdmin()) {
         return unauthorized();
       }
 
@@ -334,8 +332,8 @@ export class FakeBackendInterceptor implements HttpInterceptor {
     }
 
     function basicDetailsAccount(account) {
-      const { id, title, firstName, lastName, email, role, dateCreated, isVerified } = account;
-      return { id, title, firstName, lastName, email, role, dateCreated, isVerified };
+      const { id, title, firstName, lastName, email, isAdmin, dateCreated, isVerified } = account;
+      return { id, title, firstName, lastName, email, isAdmin, dateCreated, isVerified };
     }
 
     function basicDetailsGame(game) {
@@ -347,10 +345,10 @@ export class FakeBackendInterceptor implements HttpInterceptor {
       return !!currentAccount();
     }
 
-    function isAuthorized(role) {
+    function isAuthorizedAsAdmin() {
       const account = currentAccount();
       if (!account) return false;
-      return account.role === role;
+      return account.isAdmin;
     }
 
     function idFromUrl() {

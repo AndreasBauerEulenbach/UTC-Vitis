@@ -2,12 +2,11 @@ import { OnInit } from '@angular/core';
 import { initFlowbite } from 'flowbite';
 import {Component} from '@angular/core';
 import {AccountService} from "@app/_services/account.service";
-import {Role} from "@app/_models/role";
-import {Account} from "@app/_models/account";
-import { FooterComponent } from './modules/footer/footer.component';
+import {Account} from "@app/models/account";
+import { FooterComponent } from '@app/components/footer/footer.component';
 import {RouterOutlet} from '@angular/router';
-import { AlertComponent } from './_components/alert.component';
-import { MenuComponent } from './modules/menu/menu.component';
+import { AlertComponent } from '@app/components/alert/alert.component';
+import { MenuComponent } from '@app/components/menu/menu.component';
 
 
 @Component({
@@ -16,7 +15,6 @@ import { MenuComponent } from './modules/menu/menu.component';
     imports: [MenuComponent, AlertComponent, RouterOutlet, FooterComponent]
 })
 export class AppComponent  implements OnInit {
-  Role = Role;
   account: Account;
   title: "test";
 
