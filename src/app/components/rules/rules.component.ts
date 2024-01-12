@@ -1,34 +1,33 @@
 import { Component } from '@angular/core';
-import {Accordion, initAccordions, initFlowbite} from "flowbite";
+import {Accordion, InstanceOptions} from "flowbite";
 import type { AccordionOptions, AccordionItem, AccordionInterface } from "flowbite";
-import {CommonModule} from "@angular/common";
 
 // create an array of objects with the id, trigger element (eg. button), and the content element
 // open accordion item based on id
 const accordionItems: AccordionItem[] = [
   {
-    id: 'accordion-example-heading-1',
-    triggerEl: document.querySelector('#accordion-example-heading-1'),
-    targetEl: document.querySelector('#accordion-example-body-1'),
+    id: 'accordion-collapse-heading-1',
+    triggerEl: document.getElementById('accordion-collapse-heading-1'),
+    targetEl: document.getElementById('accordion-collapse-body-1'),
     active: true
   },
   {
-    id: 'accordion-example-heading-2',
-    triggerEl: document.querySelector('#accordion-example-heading-2'),
-    targetEl: document.querySelector('#accordion-example-body-2'),
+    id: 'accordion-collapse-heading-2',
+    triggerEl: document.getElementById('accordion-collapse-heading-2'),
+    targetEl: document.getElementById('accordion-collapse-body-2'),
     active: false
   },
   {
-    id: 'accordion-example-heading-3',
-    triggerEl: document.querySelector('#accordion-example-heading-3'),
-    targetEl: document.querySelector('#accordion-example-body-3'),
+    id: 'accordion-collapse-heading-3',
+    triggerEl: document.getElementById('accordion-collapse-heading-3'),
+    targetEl: document.getElementById('accordion-collapse-body-3'),
     active: false
   }
 ];
 
 // options with default values
 const options: AccordionOptions = {
-  alwaysOpen: true,
+  alwaysOpen: false,
   activeClasses: 'bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-white',
   inactiveClasses: 'text-gray-500 dark:text-gray-400',
   onOpen: (item) => {
@@ -44,6 +43,12 @@ const options: AccordionOptions = {
     console.log(item);
   },
 };
+
+const instanceOptions: InstanceOptions = {
+  id: 'accordion-collapse',
+  override: true
+};
+
 
 @Component({
   selector: 'app-rules',
@@ -61,15 +66,11 @@ export class RulesComponent {
   // const accordion: AccordionInterface = new Accordion(accordionItems, options);
 
   public openAccordion(id: string) {
+    const accordionEl = document.getElementById(id);
 
-    /*
-    * accordionItems: array of accordion item objects
-    * options: optional
-    */
-    const accordion: AccordionInterface = new Accordion(accordionItems, options);
+    const accordion: AccordionInterface = new Accordion(accordionEl, accordionItems, options, instanceOptions);
 
-    // open accordion item based on id
-    accordion.open('accordion-example-heading-2');
+// open accordion item based on id
     accordion.open(id);
   }
 }

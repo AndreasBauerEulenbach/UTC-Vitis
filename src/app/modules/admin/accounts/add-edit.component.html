@@ -10,21 +10,21 @@
                 <option value="Mrs">Frau</option>
             </select>
             <div *ngIf="submitted && f.title.errors" class="invalid-feedback">
-                <div *ngIf="f.title.errors.required">Title is required</div>
+                <div *ngIf="f.title.errors.required">Titel ist ein Pflichtfeld!</div>
             </div>
         </div>
         <div class="mb-4">
             <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Vorname</label>
             <input type="text" formControlName="firstName" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" [ngClass]="{ 'is-invalid': submitted && f.firstName.errors }" />
             <div *ngIf="submitted && f.firstName.errors" class="invalid-feedback">
-                <div *ngIf="f.firstName.errors.required">First Name is required</div>
+                <div *ngIf="f.firstName.errors.required">Vorname ist ein Pflichtfeld!</div>
             </div>
         </div>
         <div class="mb-4">
             <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nachname</label>
             <input type="text" formControlName="lastName" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" [ngClass]="{ 'is-invalid': submitted && f.lastName.errors }" />
             <div *ngIf="submitted && f.lastName.errors" class="invalid-feedback">
-                <div *ngIf="f.lastName.errors.required">Last Name is required</div>
+                <div *ngIf="f.lastName.errors.required">Nachname ist ein Pflichtfeld!</div>
             </div>
         </div>
     </div>
@@ -33,8 +33,8 @@
             <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Email</label>
             <input type="text" formControlName="email" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" [ngClass]="{ 'is-invalid': submitted && f.email.errors }" />
             <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
-                <div *ngIf="f.email.errors.required">Email is required</div>
-                <div *ngIf="f.email.errors.email">Email must be a valid email address</div>
+                <div *ngIf="f.email.errors.required">Email ist ein Pflichtfeld!</div>
+                <div *ngIf="f.email.errors.email">Email ist ungültig!</div>
             </div>
         </div>
     </div>
@@ -47,24 +47,24 @@
             <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Password</label>
             <input type="password" formControlName="password" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" [ngClass]="{ 'is-invalid': submitted && f.password.errors }" />
             <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
-                <div *ngIf="f.password.errors.required">Password is required</div>
-                <div *ngIf="f.password.errors.minlength">Password must be at least 6 characters</div>
+                <div *ngIf="f.password.errors.required">Passwort ist ein Pflichtfeld!</div>
+                <div *ngIf="f.password.errors.minlength">Das Passwort muss aus mindestens 6 Zeichen bestehen!</div>
             </div>
         </div>
         <div class="mb-4">
             <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Confirm Password</label>
             <input type="password" formControlName="confirmPassword" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" [ngClass]="{ 'is-invalid': submitted && f.confirmPassword.errors }" />
             <div *ngIf="submitted && f.confirmPassword.errors" class="invalid-feedback">
-                <div *ngIf="f.confirmPassword.errors.required">Confirm Password is required</div>
-                <div *ngIf="f.confirmPassword.errors.mustMatch">Passwords must match</div>
+                <div *ngIf="f.confirmPassword.errors.required">Passwort bestätigen ist ein Pflichtfeld!</div>
+                <div *ngIf="f.confirmPassword.errors.mustMatch">Die Passwörter stimmen nicht überein!</div>
             </div>
         </div>
     </div>
     <div class="form-group">
         <button [disabled]="loading" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
             <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
-            Save
+            Speichern
         </button>
-        <a routerLink="/admin/accounts" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Cancel</a>
+        <a routerLink="/admin/accounts" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Abbrechen</a>
     </div>
 </form>

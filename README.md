@@ -10,6 +10,11 @@ git config --global http.sslVerify false | true
 If NPM-cache is invalid, e.g. @angular/core could not be found any more
 npm cache clean --force
 
+Update all packages to the latest version:<br>
+`npm i -g npm-check-updates`<br>
+`ncu -u`<br>
+`npm install`<br>
+
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.

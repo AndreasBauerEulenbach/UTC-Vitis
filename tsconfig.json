@@ -20,7 +20,16 @@
     ],
     "paths": {
       "@app/*": ["src/app/*"],
-      "@environments/*": ["src/environments/*"]
+      "@environments/*": ["src/environments/*"],
+      "crypto": ["./node_modules/crypto-browserify"],
+      "stream": ["./node_modules/stream-browserify"],
+      "assert": ["./node_modules/assert"],
+      "http": ["./node_modules/stream-http"],
+      "https": ["./node_modules/https-browserify"],
+      "timers": ["./node_modules/timers-browserify"],
+      "zlib": ["./node_modules/browserify-zlib"],
+      "path": ["./node_modules/path-browserify"],
+      "os": ["./node_modules/os-browserify"]
     }
   }
 }

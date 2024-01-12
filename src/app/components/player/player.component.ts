@@ -1,7 +1,8 @@
-import {Component, Input} from '@angular/core';
-import { CommonModule } from '@angular/common';
+import {Component, Input, OnInit} from '@angular/core';
+import {CommonModule} from '@angular/common';
 import {Account} from "@app/models/account";
 import {RouterLink} from "@angular/router";
+import {connectToDatabase} from "@app/_services/database.service";
 
 @Component({
   selector: 'app-player',
@@ -10,7 +11,12 @@ import {RouterLink} from "@angular/router";
   templateUrl: './player.component.html',
   styleUrl: './player.component.scss'
 })
-export class PlayerComponent {
+export class PlayerComponent implements OnInit{
   @Input()
   player: Account;
+
+  ngOnInit() {
+    //connectToDatabase();
+  }
 }
+

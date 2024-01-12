@@ -1,4 +1,5 @@
 export const environment = {
   production: false,
-  apiUrl: 'http://localhost:4000'
+  apiUrl: 'http://localhost:4000',
+  databaseUrl: 'mongodb+srv://utcvitis3902:testtest@atlascluster.g4znal5.mongodb.net/?retryWrites=true&w=majority'
 };
