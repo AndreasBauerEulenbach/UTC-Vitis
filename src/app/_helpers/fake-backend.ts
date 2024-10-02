@@ -244,7 +244,7 @@ export class FakeBackendInterceptor implements HttpInterceptor {
       if (!isAuthenticated()) return unauthorized();
 
       let account = accounts.find(x => x.id === idFromUrl());
-
+console.log("Account: " + account.lastName);
       // user accounts can get own profile and admin accounts can get all profiles
       if (account.id !== currentAccount().id && !isAuthorizedAsAdmin()) {
         return unauthorized();

@@ -1,34 +1,36 @@
-<button class="accordion">Section 1</button>
-<div class="panel">
-  <p>Lorem ipsum...</p>
+<div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
+  <button class="accordion">Section 1</button>
+  <div class="panel">
+    <p>Lorem ipsum...</p>
+  </div>
+
+  <button class="accordion">Section 2</button>
+  <div class="panel">
+    <p>Lorem ipsum...</p>
+  </div>
+
+  <button class="accordion">Section 3</button>
+  <div class="panel">
+    <p>Lorem ipsum...</p>
+  </div>
+
+  <script>
+    var accordionElements = document.getElementsByClassName("accordion");
+    var i;
+
+    for (const acc of accordionElements) {
+      acc[i].addEventListener("click", function() {
+        this.classList.toggle("active");
+        var panel = this.nextElementSibling;
+        if (panel.style.maxHeight) {
+          panel.style.maxHeight = null;
+        } else {
+          panel.style.maxHeight = panel.scrollHeight + "px";
+        }
+      });
+    }
+  </script>
 </div>
-
-<button class="accordion">Section 2</button>
-<div class="panel">
-  <p>Lorem ipsum...</p>
-</div>
-
-<button class="accordion">Section 3</button>
-<div class="panel">
-  <p>Lorem ipsum...</p>
-</div>
-
-<script>
-  var accordionElements = document.getElementsByClassName("accordion");
-  var i;
-
-  for (const acc of accordionElements) {
-    acc[i].addEventListener("click", function() {
-      this.classList.toggle("active");
-      var panel = this.nextElementSibling;
-      if (panel.style.maxHeight) {
-        panel.style.maxHeight = null;
-      } else {
-        panel.style.maxHeight = panel.scrollHeight + "px";
-      }
-    });
-  }
-</script>
 
 <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
   <div id="accordion-collapse" data-accordion="collapse">

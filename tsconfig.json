@@ -18,6 +18,7 @@
       "ES2022",
       "dom"
     ],
+    "types": ["node", "mongodb"],
     "paths": {
       "@app/*": ["src/app/*"],
       "@environments/*": ["src/environments/*"],
