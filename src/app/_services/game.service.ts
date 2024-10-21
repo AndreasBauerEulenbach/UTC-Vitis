@@ -35,7 +35,7 @@ export class GameService {
     let creatorOfGame;
     this.http.get<Game>(`${baseUrl}/${gameId}`).subscribe(resp => creatorOfGame = resp.creatorId);
     console.log("GameID : " + gameId);
-    return creatorOfGame == this.getCurrentAccount().id;
+    return creatorOfGame == this.getCurrentAccount()._id;
   }
 
   getCurrentAccount() {

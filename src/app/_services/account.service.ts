@@ -2,21 +2,22 @@ import {Injectable} from '@angular/core';
 import {Router} from '@angular/router';
 import {HttpClient} from '@angular/common/http';
 import {BehaviorSubject, Observable} from 'rxjs';
-import {finalize, map} from 'rxjs/operators';
+import {finalize, first, map} from 'rxjs/operators';
 
 import {environment} from '@environments/environment';
 import {Account} from "@app/models/account";
+import {AlertService} from "@app/_services/alert.service";
 
 const baseUrl = `${environment.apiUrl}/accounts`;
 
-@Injectable({ providedIn: 'root' })
+@Injectable({providedIn: 'root'})
 export class AccountService {
   private accountSubject: BehaviorSubject<Account>;
   public account: Observable<Account>;
 
   constructor(
-      private router: Router,
-      private http: HttpClient
+    private router: Router,
+    private http: HttpClient
   ) {
     this.accountSubject = new BehaviorSubject<Account>(null);
     this.account = this.accountSubject.asObservable();
@@ -27,28 +28,28 @@ export class AccountService {
   }
 
   login(email: string, password: string) {
-    return this.http.post<any>(`${baseUrl}/authenticate`, { email, password }, { withCredentials: true })
-        .pipe(map(account => {
-          this.accountSubject.next(account);
-          this.startRefreshTokenTimer();
-          return account;
-        }));
+    return this.http.post<any>(`${baseUrl}/authenticate`, {email, password}, {withCredentials: true})
+      .pipe(map(account => {
+        this.accountSubject.next(account);
+        this.startRefreshTokenTimer();
+        return account;
+      }));
   }
 
   logout() {
-    this.http.post<any>(`${baseUrl}/revoke-token`, {}, { withCredentials: true }).subscribe();
+    this.http.post<any>(`${baseUrl}/revoke-token`, {}, {withCredentials: true}).subscribe();
     this.stopRefreshTokenTimer();
     this.accountSubject.next(null);
     this.router.navigate(['/account/login']);
   }
 
   refreshToken() {
-    return this.http.post<any>(`${baseUrl}/refresh-token`, {}, { withCredentials: true })
-        .pipe(map((account) => {
-          this.accountSubject.next(account);
-          this.startRefreshTokenTimer();
-          return account;
-        }));
+    return this.http.post<any>(`${baseUrl}/refresh-token`, {}, {withCredentials: true})
+      .pipe(map((account) => {
+        this.accountSubject.next(account);
+        this.startRefreshTokenTimer();
+        return account;
+      }));
   }
 
   register(account: Account) {
@@ -56,19 +57,19 @@ export class AccountService {
   }
 
   verifyEmail(token: string) {
-    return this.http.post(`${baseUrl}/verify-email`, { token });
+    return this.http.post(`${baseUrl}/verify-email`, {token});
   }
 
   forgotPassword(email: string) {
-    return this.http.post(`${baseUrl}/forgot-password`, { email });
+    return this.http.post(`${baseUrl}/forgot-password`, {email});
   }
 
   validateResetToken(token: string) {
-    return this.http.post(`${baseUrl}/validate-reset-token`, { token });
+    return this.http.post(`${baseUrl}/validate-reset-token`, {token});
   }
 
   resetPassword(token: string, password: string, confirmPassword: string) {
-    return this.http.post(`${baseUrl}/reset-password`, { token, password, confirmPassword });
+    return this.http.post(`${baseUrl}/reset-password`, {token, password, confirmPassword});
   }
 
   getAll() {
@@ -85,24 +86,24 @@ export class AccountService {
 
   update(id, params) {
     return this.http.put(`${baseUrl}/${id}`, params)
-        .pipe(map((account: any) => {
-          // update the current account if it was updated
-          if (account.id === this.accountValue.id) {
-            // publish updated account to subscribers
-            account = { ...this.accountValue, ...account };
-            this.accountSubject.next(account);
-          }
-          return account;
-        }));
+      .pipe(map((account: any) => {
+        // update the current account if it was updated
+        if (account._id === this.accountValue._id) {
+          // publish updated account to subscribers
+          account = {...this.accountValue, ...account};
+          this.accountSubject.next(account);
+        }
+        return account;
+      }));
   }
 
   delete(id: string) {
     return this.http.delete(`${baseUrl}/${id}`)
-        .pipe(finalize(() => {
-          // auto logout if the logged in account was deleted
-          if (id === this.accountValue.id)
-            this.logout();
-        }));
+      .pipe(finalize(() => {
+        // auto logout if the logged in account was deleted
+        if (id === this.accountValue._id)
+          this.logout();
+      }));
   }
 
   // helper methods

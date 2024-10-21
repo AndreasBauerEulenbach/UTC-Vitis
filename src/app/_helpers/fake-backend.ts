@@ -5,6 +5,7 @@ import { delay, materialize, dematerialize } from 'rxjs/operators';
 
 import { AlertService } from '@app/_services/alert.service';
 import {Game} from "@app/models/game";
+import {Account} from "@app/models/account";
 
 // array in local storage for accounts
 const accountsKey = 'angular-10-signup-verification-boilerplate-accounts';
@@ -24,6 +25,7 @@ export class FakeBackendInterceptor implements HttpInterceptor {
     return handleRoute();
 
     function handleRoute() {
+      console.log("URL Fake-Backend --> " + url);
       switch (true) {
         case url.endsWith('/accounts/authenticate') && method === 'POST':
           return authenticate();
@@ -31,8 +33,8 @@ export class FakeBackendInterceptor implements HttpInterceptor {
           return refreshToken();
         case url.endsWith('/accounts/revoke-token') && method === 'POST':
           return revokeToken();
-        case url.endsWith('/accounts/register') && method === 'POST':
-          return register();
+        /**case url.endsWith('/accounts/register') && method === 'POST':
+          return register();**/
         case url.endsWith('/accounts/verify-email') && method === 'POST':
           return verifyEmail();
         case url.endsWith('/accounts/forgot-password') && method === 'POST':
@@ -41,10 +43,10 @@ export class FakeBackendInterceptor implements HttpInterceptor {
           return validateResetToken();
         case url.endsWith('/accounts/reset-password') && method === 'POST':
           return resetPassword();
-        case url.endsWith('/accounts') && method === 'GET':
-          return getAccounts();
-        case url.match(/\/accounts\/\d+$/) && method === 'GET':
-          return getAccountById();
+        /**case url.endsWith('/accounts') && method === 'GET':
+          return getAccounts();**/
+        /**case url.match(/\/accounts\/\d+$/) && method === 'GET':
+          return getAccountById();**/
         case url.endsWith('/accounts') && method === 'POST':
           return createAccount();
         case url.match(/\/accounts\/\d+$/) && method === 'PUT':
@@ -135,7 +137,7 @@ export class FakeBackendInterceptor implements HttpInterceptor {
       }
 
       // assign account id and a few other properties then save
-      account.id = newAccountId();
+      account._id = newAccountId();
       if (account.email === 'test@test.at' || account.email === 'test@test.com') {
         // first registered account is an admin
         account.isAdmin = true;
@@ -236,6 +238,7 @@ export class FakeBackendInterceptor implements HttpInterceptor {
     }
 
     function getAccounts() {
+      console.log("getAccounts im FAKE-Backend called");
       if (!isAuthenticated()) return unauthorized();
       return ok(accounts.map(x => basicDetailsAccount(x)));
     }
@@ -243,10 +246,10 @@ export class FakeBackendInterceptor implements HttpInterceptor {
     function getAccountById() {
       if (!isAuthenticated()) return unauthorized();
 
-      let account = accounts.find(x => x.id === idFromUrl());
-console.log("Account: " + account.lastName);
+      let account = accounts.find(x => x._id === idFromUrl());
+
       // user accounts can get own profile and admin accounts can get all profiles
-      if (account.id !== currentAccount().id && !isAuthorizedAsAdmin()) {
+      if (account._id !== currentAccount()._id && !isAuthorizedAsAdmin()) {
         return unauthorized();
       }
 
@@ -262,7 +265,7 @@ console.log("Account: " + account.lastName);
       }
 
       // assign account id and a few other properties then save
-      account.id = newAccountId();
+      account._id = newAccountId();
       account.dateCreated = new Date().toISOString();
       account.isVerified = true;
       account.refreshTokens = [];
@@ -277,10 +280,10 @@ console.log("Account: " + account.lastName);
       if (!isAuthenticated()) return unauthorized();
 
       let params = body;
-      let account = accounts.find(x => x.id === idFromUrl());
+      let account = accounts.find(x => x._id === idFromUrl());
 
       // user accounts can update own profile and admin accounts can update all profiles
-      if (account.id !== currentAccount().id && !isAuthorizedAsAdmin()) {
+      if (account._id !== currentAccount()._id && !isAuthorizedAsAdmin()) {
         return unauthorized();
       }
 
@@ -301,15 +304,15 @@ console.log("Account: " + account.lastName);
     function deleteAccount() {
       if (!isAuthenticated()) return unauthorized();
 
-      let account = accounts.find(x => x.id === idFromUrl());
+      let account = accounts.find(x => x._id === idFromUrl());
 
       // user accounts can delete own account and admin accounts can delete any account
-      if (account.id !== currentAccount().id && !isAuthorizedAsAdmin()) {
+      if (account._id !== currentAccount()._id && !isAuthorizedAsAdmin()) {
         return unauthorized();
       }
 
       // delete account then save
-      accounts = accounts.filter(x => x.id !== idFromUrl());
+      accounts = accounts.filter(x => x._id !== idFromUrl());
       localStorage.setItem(accountsKey, JSON.stringify(accounts));
       return ok();
     }

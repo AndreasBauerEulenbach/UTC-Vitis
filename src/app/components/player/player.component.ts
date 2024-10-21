@@ -5,9 +5,9 @@ import {RouterLink} from "@angular/router";
 
 @Component({
   selector: 'app-player',
-  standalone: true,
   imports: [CommonModule, RouterLink],
   templateUrl: './player.component.html',
+  standalone: true,
   styleUrl: './player.component.scss'
 })
 export class PlayerComponent implements OnInit{
