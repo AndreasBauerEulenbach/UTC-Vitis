@@ -19,6 +19,9 @@
         Name
       </th>
       <th scope="col" class="px-6 py-3">
+        Geburtsdatum
+      </th>
+      <th scope="col" class="px-6 py-3">
         Email
       </th>
       <th scope="col" class="px-6 py-3">
@@ -37,6 +40,9 @@
         </div>
       </th>
       <td class="px-6 py-4">
+        {{getFormattedDate(account.dateOfBirth)}}
+      </td>
+      <td class="px-6 py-4">
         {{account.email}}
       </td>
       <td class="px-6 py-4">
@@ -45,8 +51,8 @@
         </div>
       </td>
       <td class="px-6 py-4">
-        <a routerLink="edit/{{account.id}}" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm sm:w-auto px-1 py-1.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Bearbeiten</a>
-        <button (click)="deleteAccount(account.id)" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm sm:w-auto px-1 py-1.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+        <a routerLink="edit/{{account._id}}" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm sm:w-auto px-1 py-1.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Bearbeiten</a>
+        <button (click)="deleteAccount(account._id)" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm sm:w-auto px-1 py-1.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
                 [disabled]="account.isDeleting">
           <a *ngIf="account.isDeleting" class="spinner-border spinner-border-sm"></a><a *ngIf="!account.isDeleting">Löschen</a>
         </button>

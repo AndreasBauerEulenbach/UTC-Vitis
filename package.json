@@ -22,7 +22,9 @@
     "@angular/platform-browser-dynamic": "^17.0.9",
     "@angular/router": "^17.0.9",
     "@aws-sdk/credential-providers": "^3.490.0",
+    "autoprefixer": "^10.4.20",
     "flowbite": "^2.2.1",
+    "postcss": "^8.4.47",
     "rxjs": "~7.8.1",
     "stream": "^0.0.2",
     "tslib": "^2.6.2",
@@ -42,7 +44,7 @@
     "karma-coverage": "~2.2.1",
     "karma-jasmine": "~5.1.0",
     "karma-jasmine-html-reporter": "~2.1.0",
-    "tailwindcss": "^3.4.1",
+    "tailwindcss": "^3.4.14",
     "timers-browserify": "^2.0.12",
     "typescript": "^5.3.3"
   }

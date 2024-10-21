@@ -2,7 +2,8 @@ import {Component, OnInit} from '@angular/core';
 import {first} from 'rxjs/operators';
 import {AccountService} from "@app/_services/account.service";
 import { RouterLink } from '@angular/router';
-import { NgFor, NgIf } from '@angular/common';
+import {DatePipe, NgFor, NgIf} from '@angular/common';
+import {pipe} from "rxjs";
 
 @Component({
     templateUrl: 'list.component.html',
@@ -28,5 +29,9 @@ export class ListComponent implements OnInit {
             .subscribe(() => {
                 this.accounts = this.accounts.filter(x => x.id !== id)
             });
+    }
+
+    getFormattedDate(date: string) {
+      return new DatePipe('de-DE').transform(new Date(date), 'longDate');
     }
 }
