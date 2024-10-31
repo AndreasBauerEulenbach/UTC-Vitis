@@ -8,6 +8,45 @@ import {AlertService} from "@app/_services/alert.service";
 import {MustMatch} from "@app/_helpers/must-match.validator";
 import {NgClass, NgIf} from '@angular/common';
 import {Account} from "@app/models/account";
+import {Datepicker, DatepickerInterface, DatepickerOptions, InstanceOptions} from "flowbite";
+
+// set the target element of the input field or div
+const $datepickerEl: HTMLInputElement = document.getElementById('datepicker-custom') as HTMLInputElement;
+
+// optional options with default values and callback functions
+const options: DatepickerOptions = {
+  defaultDatepickerId: null,
+  autohide: false,
+  format: 'mm/dd/yyyy',
+  maxDate: null,
+  minDate: null,
+  orientation: 'bottom',
+  buttons: false,
+  autoSelectToday: 0,
+  title: null,
+  rangePicker: false,
+  onShow: () => {
+  },
+  onHide: () => {
+  },
+};
+
+// instance options object
+const instanceOptions: InstanceOptions = {
+  id: 'datepicker-custom-example',
+  override: true
+};
+
+/*
+* $datepickerEl: required
+* options: optional
+* instanceOptions: optional
+*/
+const datepicker: DatepickerInterface = new Datepicker(
+  $datepickerEl,
+  options,
+  instanceOptions
+);
 
 @Component({
   templateUrl: 'register.component.html',
@@ -33,6 +72,10 @@ export class RegisterComponent implements OnInit {
       title: ['', Validators.required],
       firstName: ['', Validators.required],
       lastName: ['', Validators.required],
+      dateOfBirth: ['', Validators.required],
+      street: [''],
+      postalCode: [''],
+      city: [''],
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(6)]],
       confirmPassword: ['', Validators.required],
@@ -62,11 +105,9 @@ export class RegisterComponent implements OnInit {
 
     const accountToBeRegistered = this.form.value;
 
-    this.accountService.getAll().subscribe({
+    this.accountService.getAllAccounts(accountToBeRegistered.email).subscribe({
       next: (value) => {
-        const foundAccount = value.find(x => x.email === accountToBeRegistered.email);
-
-        if (foundAccount) {// display email already registered "email" in alert
+        if (value) {// display email already registered "email" in alert
           setTimeout(() => {
             this.alertService.info(`
                         <h4>Du bist bereits registriert!</h4>
@@ -76,11 +117,11 @@ export class RegisterComponent implements OnInit {
           }, 1000);
 
         } else {  //continue with registration
-          this.accountService.register(this.form.value).pipe(first()).subscribe({
+          this.accountService.register(accountToBeRegistered).pipe(first()).subscribe({
             next: (value) => {
               this.alertService.success(`
                     <h4><strong>Registrierung erfolgreich!</strong></h4>
-                    <p>Bitte überprüfe deinen Posteingang und verfollständige den Registrierungsprozess!</p>`,
+                    <p>Bitte überprüfe deinen Posteingang (<strong>${this.f.email.value}</strong>) und verfollständige den Registrierungsprozess!</p>`,
                 {keepAfterRouteChange: true});
               this.router.navigate(['../login'], {relativeTo: this.route});
             },
@@ -91,7 +132,7 @@ export class RegisterComponent implements OnInit {
                     <p>Du konntest am System nicht registriert werden, bitte versuche es erneut!</p>
                 `, {autoClose: false});
               }, 1000);
-              console.log("Fehler beim Registrierungsprozess: " + error);
+              console.log("Fehler bei einer Registrierung: " + error);
               this.loading = false;
             }
           });
@@ -101,18 +142,5 @@ export class RegisterComponent implements OnInit {
         return;
       }
     });
-
-    /** Text to send via EMAIL:
-     * setTimeout(() => {
-     *             const verifyUrl = `${location.origin}/account/verify-email?token=${account.verificationToken}`;
-     *             alertService.info(`
-     *                     <h4>Verifizierung Email</h4>
-     *                     <p>Danke für deine Registrierung!</p>
-     *                     <p>Bitte klicke auf den untenstehenden Link um deine Email-Adresse zu verifizieren:</p>
-     *                     <p><a href="${verifyUrl}">${verifyUrl}</a></p>
-     *                     <div><strong>NOTE:</strong> The fake backend displayed this "email" so you can test without an api. A real backend would send a real email.</div>
-     *                 `, {autoClose: false});
-     *           }, 1000);
-     */
   }
 }

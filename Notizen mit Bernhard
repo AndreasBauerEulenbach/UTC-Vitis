@@ -1,0 +1,7 @@
+Forderungsrangliste
+- kein Baum, sondern eine Liste (ähnlich wie im NÖTV)
+- farblich soll markiert werden wer gefordert werden darf vom eingeloggten User
+- Sortierung nach Punkten
+- Erstversion soll ohne Punkte erfolgen, dafür werden bei einem Sieg des Herausforderers Plätze getauscht
+- Eine Forderung soll innerhalb eine gesetzten Frist gespielt werden (Ergebnis eintragen), ansonsten erlischt sie automatisch
+- Jeder Spieler kann aktuell nur EINE aufrechte Forderung besitzen

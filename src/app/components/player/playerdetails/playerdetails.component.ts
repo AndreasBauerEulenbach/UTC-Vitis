@@ -24,7 +24,7 @@ export class PlayerdetailsComponent {
 
   ngOnInit() {
     const playerId = this.route.snapshot.paramMap.get('playerid');
-    this.$player = this.accountService.getById(playerId);
+    this.$player = this.accountService.getAccountById(playerId);
     this.$player.subscribe(account => this.player = account);
     console.log(this.player);
   }

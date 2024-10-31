@@ -4,10 +4,12 @@
     <div class="form-row">
       <div class="mb-2">
         <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Titel</label>
-        <select formControlName="title" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" [ngClass]="{ 'is-invalid': submitted && f.title.errors }">
+        <select formControlName="title"
+                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                [ngClass]="{ 'is-invalid': submitted && f.title.errors }">
           <option value=""></option>
-          <option value="Mr">Herr</option>
-          <option value="Mrs">Frau</option>
+          <option value="Herr">Herr</option>
+          <option value="Frau">Frau</option>
         </select>
         <div *ngIf="submitted && f.title.errors" class="invalid-feedback">
           <div *ngIf="f.title.errors.required">Titel ist ein Pflichtfeld!</div>
@@ -15,31 +17,82 @@
       </div>
       <div class="mb-2">
         <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Vorname</label>
-        <input type="text" formControlName="firstName" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" [ngClass]="{ 'is-invalid': submitted && f.firstName.errors }" />
+        <input type="text" formControlName="firstName"
+               class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+               [ngClass]="{ 'is-invalid': submitted && f.firstName.errors }"/>
         <div *ngIf="submitted && f.firstName.errors" class="invalid-feedback">
           <div *ngIf="f.firstName.errors.required">Vorname ist ein Pflichtfeld!</div>
         </div>
       </div>
       <div class="mb-2">
         <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nachname</label>
-        <input type="text" formControlName="lastName" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" [ngClass]="{ 'is-invalid': submitted && f.lastName.errors }" />
+        <input type="text" formControlName="lastName"
+               class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+               [ngClass]="{ 'is-invalid': submitted && f.lastName.errors }"/>
         <div *ngIf="submitted && f.lastName.errors" class="invalid-feedback">
           <div *ngIf="f.lastName.errors.required">Nachname ist ein Pflichtfeld!</div>
         </div>
       </div>
-    </div>
-    <div class="mb-2">
-      <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Email</label>
-      <input type="text" formControlName="email" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" [ngClass]="{ 'is-invalid': submitted && f.email.errors }" />
-      <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
-        <div *ngIf="f.email.errors.required">Email ist ein Pflichtfeld!</div>
-        <div *ngIf="f.email.errors.email">Email ist ungültig!</div>
+      <div class="mb-2">
+        <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Geburtsdatum</label>
+        <div class="relative max-w-sm">
+          <div class="absolute inset-y-0 start-0 flex items-center ps-3.5 pointer-events-none">
+            <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                 fill="currentColor" viewBox="0 0 20 20">
+              <path
+                d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z"/>
+            </svg>
+          </div>
+          <input id="datepicker-custom" type="text" formControlName="dateOfBirth"
+                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-1/2 ps-10 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                 placeholder="Datum auswählen..." [ngClass]="{ 'is-invalid': submitted && f.dateOfBirth.errors }"/>
+        </div>
+        <div *ngIf="submitted && f.dateOfBirth.errors" class="invalid-feedback">
+          <div *ngIf="f.dateOfBirth.errors.required">Geburtsdatum ist ein Pflichtfeld!</div>
+        </div>
       </div>
-    </div>
-    <div class="form-row">
+      <div class="mb-2">
+        <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Straße</label>
+        <input type="text" formControlName="street"
+               class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-1/2 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+               [ngClass]="{ 'is-invalid': submitted && f.street.errors }"/>
+        <div *ngIf="submitted && f.street.errors" class="invalid-feedback">
+          <div *ngIf="f.street.errors.required">Straße ist ein Pflichtfeld!</div>
+        </div>
+      </div>
+      <div class="mb-2">
+        <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Postleitzahl</label>
+        <input type="text" formControlName="postalCode"
+               class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-1/5 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+               [ngClass]="{ 'is-invalid': submitted && f.postalCode.errors }"/>
+        <div *ngIf="submitted && f.postalCode.errors" class="invalid-feedback">
+          <div *ngIf="f.postalCode.errors.required">Postleitzahl ist ein Pflichtfeld!</div>
+        </div>
+      </div>
+      <div class="mb-2">
+        <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Ort</label>
+        <input type="text" formControlName="city"
+               class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-1/3 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+               [ngClass]="{ 'is-invalid': submitted && f.city.errors }"/>
+        <div *ngIf="submitted && f.city.errors" class="invalid-feedback">
+          <div *ngIf="f.city.errors.required">Ort ist ein Pflichtfeld!</div>
+        </div>
+      </div>
+      <div class="mb-2">
+        <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Email</label>
+        <input type="text" formControlName="email"
+               class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+               [ngClass]="{ 'is-invalid': submitted && f.email.errors }"/>
+        <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+          <div *ngIf="f.email.errors.required">Email ist ein Pflichtfeld!</div>
+          <div *ngIf="f.email.errors.email">Email ist ungültig!</div>
+        </div>
+      </div>
       <div class="mb-2">
         <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Passwort</label>
-        <input type="password" formControlName="password" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" [ngClass]="{ 'is-invalid': submitted && f.password.errors }" />
+        <input type="password" formControlName="password"
+               class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+               [ngClass]="{ 'is-invalid': submitted && f.password.errors }"/>
         <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
           <div *ngIf="f.password.errors.required">Passwort ist ein Pflichtfeld!</div>
           <div *ngIf="f.password.errors.minlength">Das Passwort muss aus mindestens 6 Zeichen bestehen!</div>
@@ -47,7 +100,9 @@
       </div>
       <div class="mb-2">
         <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Passwort bestätigen</label>
-        <input type="password" formControlName="confirmPassword" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" [ngClass]="{ 'is-invalid': submitted && f.confirmPassword.errors }" />
+        <input type="password" formControlName="confirmPassword"
+               class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+               [ngClass]="{ 'is-invalid': submitted && f.confirmPassword.errors }"/>
         <div *ngIf="submitted && f.confirmPassword.errors" class="invalid-feedback">
           <div *ngIf="f.confirmPassword.errors.required">Passwort bestätigen ist ein Pflichtfeld!</div>
           <div *ngIf="f.confirmPassword.errors.mustMatch">Die Passwörter stimmen nicht überein!</div>
@@ -55,16 +110,21 @@
       </div>
     </div>
     <div class="flex items-center mb-4">
-      <input type="checkbox" formControlName="acceptTerms" id="acceptTerms" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" [ngClass]="{ 'is-invalid': submitted && f.acceptTerms.errors }" />
-      <label for="acceptTerms" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Accept Terms & Conditions</label>
+      <input type="checkbox" formControlName="acceptTerms" id="acceptTerms"
+             class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+             [ngClass]="{ 'is-invalid': submitted && f.acceptTerms.errors }"/>
+      <label for="acceptTerms" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Accept Terms &
+        Conditions</label>
       <div *ngIf="submitted && f.acceptTerms.errors" class="invalid-feedback">Accept Ts & Cs is required</div>
     </div>
     <div class="form-group">
-      <button [disabled]="loading" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+      <button [disabled]="loading"
+              class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
         <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
         Registrieren
       </button>
-      <a routerLink="../login" href="" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Abbrechen</a>
+      <a routerLink="../login" href=""
+         class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Abbrechen</a>
     </div>
   </form>
 </div>

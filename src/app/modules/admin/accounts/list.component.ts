@@ -16,7 +16,7 @@ export class ListComponent implements OnInit {
     constructor(private accountService: AccountService) {}
 
     ngOnInit() {
-        this.accountService.getAll()
+        this.accountService.getAllAccounts("")
             .pipe(first())
             .subscribe(accounts => this.accounts = accounts);
     }
@@ -24,7 +24,7 @@ export class ListComponent implements OnInit {
     deleteAccount(id: string) {
         const account = this.accounts.find(x => x.id === id);
         account.isDeleting = true;
-        this.accountService.delete(id)
+        this.accountService.deleteAccount(id)
             .pipe(first())
             .subscribe(() => {
                 this.accounts = this.accounts.filter(x => x.id !== id)

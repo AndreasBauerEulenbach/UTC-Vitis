@@ -43,7 +43,7 @@ export class AddEditComponent implements OnInit {
         });
 
         if (!this.isAddMode) {
-            this.accountService.getById(this.id)
+            this.accountService.getAccountById(this.id)
                 .pipe(first())
                 .subscribe(x => this.form.patchValue(x));
         }
@@ -72,7 +72,7 @@ export class AddEditComponent implements OnInit {
     }
 
     private createAccount() {
-        this.accountService.create(this.form.value)
+        this.accountService.createNewAccount(this.form.value)
             .pipe(first())
             .subscribe({
                 next: () => {
@@ -87,7 +87,7 @@ export class AddEditComponent implements OnInit {
     }
 
     private updateAccount() {
-        this.accountService.update(this.id, this.form.value)
+        this.accountService.updateAccount(this.id, this.form.value)
             .pipe(first())
             .subscribe({
                 next: () => {

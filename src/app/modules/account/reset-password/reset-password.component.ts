@@ -80,7 +80,7 @@ export class ResetPasswordComponent implements OnInit {
             .pipe(first())
             .subscribe({
                 next: () => {
-                    this.alertService.success('Passwort zurücksetzen erfolgreich, du kannst dich jetzt einloggen', { keepAfterRouteChange: true });
+                    this.alertService.success('Passwort zurücksetzen war erfolgreich, du kannst dich jetzt einloggen', { keepAfterRouteChange: true });
                     this.router.navigate(['../login'], { relativeTo: this.route });
                 },
                 error: error => {

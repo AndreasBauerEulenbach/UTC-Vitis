@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {Router} from '@angular/router';
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpParams} from '@angular/common/http';
 import {BehaviorSubject, Observable} from 'rxjs';
 import {finalize, first, map} from 'rxjs/operators';
 
@@ -31,6 +31,7 @@ export class AccountService {
     return this.http.post<any>(`${baseUrl}/authenticate`, {email, password}, {withCredentials: true})
       .pipe(map(account => {
         this.accountSubject.next(account);
+        console.log("Logged-in: ", account);
         this.startRefreshTokenTimer();
         return account;
       }));
@@ -72,19 +73,20 @@ export class AccountService {
     return this.http.post(`${baseUrl}/reset-password`, {token, password, confirmPassword});
   }
 
-  getAll() {
-    return this.http.get<Account[]>(baseUrl);
+  getAllAccounts(email) {
+    let params = new HttpParams().set('email', email);
+    return this.http.get<Account[]>(baseUrl, {params: params});
   }
 
-  getById(id: string) {
+  getAccountById(id: string) {
     return this.http.get<Account>(`${baseUrl}/${id}`);
   }
 
-  create(params) {
+  createNewAccount(params) {
     return this.http.post(baseUrl, params);
   }
 
-  update(id, params) {
+  updateAccount(id, params) {
     return this.http.put(`${baseUrl}/${id}`, params)
       .pipe(map((account: any) => {
         // update the current account if it was updated
@@ -97,7 +99,7 @@ export class AccountService {
       }));
   }
 
-  delete(id: string) {
+  deleteAccount(id: string) {
     return this.http.delete(`${baseUrl}/${id}`)
       .pipe(finalize(() => {
         // auto logout if the logged in account was deleted

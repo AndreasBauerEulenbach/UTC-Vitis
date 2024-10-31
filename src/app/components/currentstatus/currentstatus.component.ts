@@ -24,12 +24,12 @@ export class CurrentstatusComponent implements OnInit {
   constructor(private accountService: AccountService, public gameService: GameService) {}
 
   ngOnInit() {
-    this.accountService.getAll()
-      .pipe(first())
+    this.accountService.getAllAccounts("")
+        .pipe(first())
       .subscribe(accounts => this.accounts = accounts);
 
-    this.gameService.createGameForCurrentAccount("2").pipe(first())
-      .subscribe();
+    /**this.gameService.createGameForCurrentAccount("2").pipe(first())
+      .subscribe();**/
 
     this.gameService.getAllGamesOfAccount(this.accountId)
       .pipe(first())

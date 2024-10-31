@@ -56,7 +56,7 @@ export class UpdateComponent implements OnInit {
     }
 
     this.loading = true;
-    this.accountService.update(this.account._id, this.form.value)
+    this.accountService.updateAccount(this.account._id, this.form.value)
       .pipe(first())
       .subscribe({
         next: () => {
@@ -73,7 +73,7 @@ export class UpdateComponent implements OnInit {
   onDelete() {
     if (confirm('Are you sure?')) {
       this.deleting = true;
-      this.accountService.delete(this.account._id)
+      this.accountService.deleteAccount(this.account._id)
         .pipe(first())
         .subscribe(() => {
           this.alertService.success('Benutzerkonto wurde erfolgreich gelöscht!', { keepAfterRouteChange: true });

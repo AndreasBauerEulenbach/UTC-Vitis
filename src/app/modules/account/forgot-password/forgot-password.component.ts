@@ -1,15 +1,15 @@
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
-import { first, finalize } from 'rxjs/operators';
+import {Component, OnInit} from '@angular/core';
+import {FormBuilder, FormGroup, Validators, ReactiveFormsModule} from '@angular/forms';
+import {first, finalize} from 'rxjs/operators';
 import {AccountService} from "@app/_services/account.service";
 import {AlertService} from "@app/_services/alert.service";
-import { RouterLink } from '@angular/router';
-import { NgClass, NgIf } from '@angular/common';
+import {RouterLink} from '@angular/router';
+import {NgClass, NgIf} from '@angular/common';
 
 @Component({
-    templateUrl: 'forgot-password.component.html',
-    standalone: true,
-    imports: [ReactiveFormsModule, NgClass, NgIf, RouterLink]
+  templateUrl: 'forgot-password.component.html',
+  standalone: true,
+  imports: [ReactiveFormsModule, NgClass, NgIf, RouterLink]
 })
 export class ForgotPasswordComponent implements OnInit {
   form: FormGroup;
@@ -20,7 +20,8 @@ export class ForgotPasswordComponent implements OnInit {
     private formBuilder: FormBuilder,
     private accountService: AccountService,
     private alertService: AlertService
-  ) { }
+  ) {
+  }
 
   ngOnInit() {
     this.form = this.formBuilder.group({
@@ -29,7 +30,9 @@ export class ForgotPasswordComponent implements OnInit {
   }
 
   // convenience getter for easy access to form fields
-  get f() { return this.form.controls; }
+  get f() {
+    return this.form.controls;
+  }
 
   onSubmit() {
     this.submitted = true;
@@ -48,7 +51,7 @@ export class ForgotPasswordComponent implements OnInit {
       .pipe(first())
       .pipe(finalize(() => this.loading = false))
       .subscribe({
-        next: () => this.alertService.success('Please check your email for password reset instructions'),
+        next: () => this.alertService.success(`Bitte überprüfe deinen Posteingang (<strong>${this.f.email.value}</strong>) und vervollständige die Passwortrücksetzung!`),
         error: error => this.alertService.error(error)
       });
   }

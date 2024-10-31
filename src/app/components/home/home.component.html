@@ -1,7 +1,57 @@
 <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
   <div class="container" *ngIf="account != null">
     <h1>Hallo <b>{{account.firstName}}</b>!</h1>
-    <p>Deine Email-Adresse lautet <b>{{account.email}}</b></p>
+    <p>Du hast im Moment keine offenen Forderungen</p>
+  </div>
+  <div id="status-tournament-my-acceptable-games">
+    <h3 class="block mb-6 text-xl font-medium text-gray-900 dark:text-white">Du hast 1 offene Forderung:</h3>
+    <table bgcolor="#d3d3d3">
+      <thead align="left">
+      <tr>
+        <th>Spieler 1</th>
+        <th></th>
+        <th>Spieler 2</th>
+        <th></th>
+        <th></th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr style="height: 40px">
+        <td>Bernhard Bauer</td>
+        <td></td>
+        <td>Andreas Bauer</td>
+        <td>
+          <a class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm sm:w-auto px-1 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Annehmen</a>
+        </td>
+        <td>
+          <a class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm sm:w-auto px-1 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Ablehnen</a>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+  <div id="status-tournament-my-accepted-games">
+    <h3 class="block mb-6 text-xl font-medium text-gray-900 dark:text-white">Du hast eine angenommene Forderung:</h3>
+    <table bgcolor="#d3d3d3">
+      <thead align="left">
+      <tr>
+        <th>Spieler 1</th>
+        <th></th>
+        <th>Spieler 2</th>
+        <th></th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr style="height: 40px">
+        <td>Bernhard Bauer</td>
+        <td></td>
+        <td>Andreas Bauer</td>
+        <td>
+          <a class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm sm:w-auto px-1 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Ergebnis eintragen</a>
+        </td>
+      </tr>
+      </tbody>
+    </table>
   </div>
   <div class="container" *ngIf="account == null">
     <h1>Liebe Spielerin, lieber Spieler!</h1><br>
